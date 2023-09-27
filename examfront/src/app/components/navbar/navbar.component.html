@@ -1,0 +1,32 @@
+<p>
+    <mat-toolbar color="primary">
+        <a
+        [routerLink]="['/']"
+        mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>
+                 <span class="material-symbols-outlined">
+                menu_book
+                </span> 
+            </mat-icon>
+            <!-- <img src="../../../assets/exam_logo-removebg-preview.png" alt=""> -->
+        <!-- </a><a href=""> -->
+        </a>
+        <span>ExamPortal</span>
+       
+        
+        <span class="example-spacer"></span>
+        <a [routerLink]="['/login']"
+        mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+            <!-- <mat-icon>login</mat-icon> -->
+            Login
+        </a>
+        <a 
+        [routerLink]="['/signup']"
+        mat-icon-button class="example-icon mr20 ml20" aria-label="Example icon-button with share icon">
+            <!-- <mat-icon>share</mat-icon> -->
+            Register
+        </a>
+        
+    </mat-toolbar>
+</p>
+

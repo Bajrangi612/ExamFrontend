@@ -9,7 +9,7 @@ export class ApiCommonService {
 
   baseUrl = 'http://localhost:8080';
 
-  TOKEN_HEADER = 'Aurthorization';
+  TOKEN_HEADER = 'Authorization';
 
   constructor(public http: HttpClient) { }
 
@@ -27,6 +27,8 @@ export class ApiCommonService {
       "Authorization": 'Bearer ' + token
     });
     var options = { headers: headers };
+    console.log(options);
+    
     return this.http.post(this.baseUrl + endpoint, body, options)
   }
   

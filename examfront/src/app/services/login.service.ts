@@ -22,6 +22,7 @@ export class LoginService {
   // Login User
   public loginUser(token) {
     localStorage.setItem("token", token);
+
   }
 
   public isLoggedIn() {
@@ -33,6 +34,8 @@ export class LoginService {
   }
   //   log out -- remove token from  local storage
   public logOut() {
+    console.log(" logout method called ...");
+    
     localStorage.removeItem("token");
     localStorage.removeItem("user");
   }
@@ -43,22 +46,29 @@ export class LoginService {
   }
   //  set user data in local  storage
   public setUser(userDetails) {
+    // console.log(" User details in login service"+userDetails);
+    
     localStorage.setItem("user", JSON.stringify(userDetails));
   }
 
   // getUser
   public getUser() {
     let userStr = localStorage.getItem("user");
+    console.log(userStr);
+    
     if (userStr != null) {
+      console.log(JSON.parse(userStr));
       return JSON.parse(userStr);
     } else {
-      this.logOut();
+      // this.logOut();
       return null;
     }
   }
 
   public getUserRole() {
     let user = this.getUser();
+    console.log(user);
+    
     return user.authorities[0].authority;
   }
 

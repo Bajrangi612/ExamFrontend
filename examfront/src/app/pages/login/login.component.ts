@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { ApiCommonService } from 'src/app/services/api-common.service';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   }
   constructor(private snackBar: MatSnackBar,
     private loginservice: LoginService,
-    private apiCommonService: ApiCommonService) { }
+    private apiCommonService: ApiCommonService,
+    private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -29,16 +31,28 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loginservice.generateToken(this.loginDetails).subscribe((data) => {
-      console.log("success ...");
-     
-      console.log(data);
+  
+
+   
       this.loginservice.loginUser(data.token)
-      this.apiCommonService.getCurrentUser().subscribe((user)=>{
-        console.log(user);
-        console.log("user LoggedIn..");
-      },(error:any)=>{
-        console.log("Error ...");
-        console.log(error);
+      this.apiCommonService.getCurrentUser().subscribe((user) => {
+        this.loginservice.setUser(user);
+        if (this.loginservice.getUserRole() == "ADMIN") {
+          // redirect to admin dashboard 
+          window.location.href = '/admin'
+
+        } else if (this.loginservice.getUserRole() == "NORMAL") {
+          // REDIRECT TO  NORMAL USER DHASBOARD
+          // window.location.href = '/user'
+          this.router.navigate(['user']);
+
+        } else{
+
+          this.loginservice.logOut()
+        }
+
+      }, (error: any) => {
+
         this.snackBar.open("Invalid Credentials !!", 'ok', {
           duration: 2000,
           verticalPosition: 'top'
@@ -46,16 +60,15 @@ export class LoginComponent implements OnInit {
         return;
       })
 
-    },(error)=>{
-      console.log("Error ...");
-      console.log(error);
-      
+    }, (error) => {
+
+
       this.snackBar.open("Invalid Credentials !!", 'ok', {
         duration: 2000,
         verticalPosition: 'top'
       });
       return;
-      
+
     })
   }
 

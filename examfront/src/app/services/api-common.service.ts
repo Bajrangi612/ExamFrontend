@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class ApiCommonService {
 
   baseUrl = 'http://localhost:8080';
+
   TOKEN_HEADER = 'Aurthorization';
 
   constructor(public http: HttpClient) { }
@@ -28,6 +29,7 @@ export class ApiCommonService {
     var options = { headers: headers };
     return this.http.post(this.baseUrl + endpoint, body, options)
   }
+  
   put(endpoint: string, body: any): Observable<any> {
     let token = null;    var headers = new HttpHeaders({
       "Authorization": 'Bearer ' + token

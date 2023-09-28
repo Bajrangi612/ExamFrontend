@@ -41,7 +41,8 @@ export class SignupComponent implements OnInit {
         // Success
         // console.log(data.message);
         this.snackBar.open(data.message, 'Undo',{
-          duration:2000
+          duration:2000,
+          verticalPosition:'top'
         });
         // alert(data.message)
         
@@ -49,7 +50,7 @@ export class SignupComponent implements OnInit {
         //  error
         // console.log(error.error.message);
         // alert(error.error.message);
-        this.snackBar.open(error.error.message, 'Undo',{
+        this.snackBar.open(error.error.message, 'ok',{
           duration:2000,
           verticalPosition:'top'
         });

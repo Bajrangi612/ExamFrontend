@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiCommonService } from 'src/app/services/api-common.service';
 import { LoginService } from 'src/app/services/login.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -14,14 +15,23 @@ export class LoginComponent implements OnInit {
     username: "",
     password: ""
   }
+  chileComponentmessage:any='this message is from child component.';
+  @Output() childComponent = new EventEmitter();
+  
+
+
   constructor(private snackBar: MatSnackBar,
     private loginservice: LoginService,
     private apiCommonService: ApiCommonService,
-    private router:Router) { }
+    private router:Router,
+    private activatedRouter:ActivatedRoute) { }
 
   ngOnInit(): void {
+   
   }
   formsubmit() {
+    var snapshot = this.activatedRouter.snapshot;
+    console.log(" ??????????????? ",snapshot.routeConfig.component.name);
     // login 
     if (this.loginDetails.username.trim() == '' || this.loginDetails.username == null || this.loginDetails.password.trim() == '' || this.loginDetails.password == null) {
       this.snackBar.open("Please fill user name and pasword", 'ok', {

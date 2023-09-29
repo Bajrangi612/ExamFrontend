@@ -1,7 +1,7 @@
 <p>
     <mat-toolbar color="primary">
         <a
-        [routerLink]="['/']"
+        [routerLink]="['/']" *ngIf="!isloggedIn" (click)="makeLoginRefisterVisible()"
         mat-button class="example-icon" aria-label="Example icon-button with menu icon">
             <mat-icon>
                  <span class="material-symbols-outlined">
@@ -16,12 +16,13 @@
         
         <span class="example-spacer"></span>
         <a 
-            *ngIf="!loginService.isLoggedIn()"
+            *ngIf="!loginService.isLoggedIn() && visibleLoginbutton" (click)="visibleLoginbutton=false;visibleRegisterbutton=true"
          [routerLink]="['/login']"
         mat-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
             <!-- <mat-icon>login</mat-icon> -->
             Login
         </a>
+
         <a  (click)="logout()"
          *ngIf="loginService.isLoggedIn()"
          
@@ -29,19 +30,21 @@
             <!-- <mat-icon>login</mat-icon> -->
             LogOut
         </a>
-        <a *ngIf="!loginService.isLoggedIn()"
+        <a *ngIf="!loginService.isLoggedIn() && visibleRegisterbutton" (click)="visibleLoginbutton=true;visibleRegisterbutton=false"
         [routerLink]="['/signup']"
         mat-button class="example-icon mr20 ml20" aria-label="Example icon-button with share icon">
             <!-- <mat-icon>share</mat-icon> -->
             Register
         </a>
-        <a *ngIf="loginService.isLoggedIn()"
-        [routerLink]="['/signup']"
+         <div *ngIf="loginService.isLoggedIn()">
+            <a 
+        
         mat-button 
         class="example-icon mr20 ml20" aria-label="Example icon-button with share icon">
             <!-- <mat-icon>share</mat-icon> -->
-           {{loginService.getUser().username}}
+         Name
         </a>
+         </div>
         
     </mat-toolbar>
 </p>

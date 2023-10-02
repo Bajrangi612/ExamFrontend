@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/services/user.service';
-
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -40,11 +40,17 @@ export class SignupComponent implements OnInit {
       (data)=>{
         // Success
         // console.log(data.message);
-        this.snackBar.open(data.message, 'Undo',{
-          duration:2000,
-          verticalPosition:'top'
-        });
+        // this.snackBar.open(data.message, 'Undo',{
+        //   duration:2000,
+        //   verticalPosition:'top'
+        // });
         // alert(data.message)
+        Swal.fire(
+          'Good job!',
+          data.message,
+          'success',
+          
+        )
         
       },(error)=>{
         //  error
@@ -54,6 +60,12 @@ export class SignupComponent implements OnInit {
           duration:2000,
           verticalPosition:'top'
         });
+        Swal.fire({
+          icon: 'error',
+          title: error.error.message,
+          text: 'Please Try Again..',
+          timer: 5000
+        })
       }
     )
     // alert("form submit");

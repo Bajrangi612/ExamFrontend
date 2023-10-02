@@ -1,0 +1,58 @@
+<mat-card>
+    <h1>Your profile details</h1>
+    <mat-card-content>
+        <div class="bootstarp-wrapper">
+            <div class="container">
+
+                <div class="container text-center">
+
+                    <img src="https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
+                        alt="" class="profile-image">
+                    <h1 class="mt10">{{user.firstName +" " }}{{ user.lastName}}</h1>
+
+                </div>
+      /
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <table class="table text-center">
+
+                            <tr>
+                                <td>UserName</td>
+                                <td>{{user.username}}</td>
+                            </tr>
+                            <tr>
+                                <td>UserId</td>
+                                <td>EXAM{{user.userId}}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone</td>
+                                <td>{{user.phone}}</td>
+                            </tr>
+                            <tr>
+                                <td>Role</td>
+                                <td>{{user.authorities[0].authority}}</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td>{{user.enabled ? "ACTIVE" :"INACTIVE"}}</td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td>{{user.gender|uppercase}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+
+                </div>
+                
+
+
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions class="text-center">
+        <button mat-raised-button color="primary">Update</button>
+        <button mat-raised-button color="accent">Reset</button>
+      </mat-card-actions> 
+</mat-card>

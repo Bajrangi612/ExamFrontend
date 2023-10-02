@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ApiCommonService } from './api-common.service';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+  public logInStatusSubject = new Subject<boolean>();
 
   constructor(private apiCommonService: ApiCommonService
   ) { }
@@ -34,7 +36,7 @@ export class LoginService {
   }
   //   log out -- remove token from  local storage
   public logOut() {
-    console.log(" logout method called ...");
+    // console.log(" logout method called ...");
     
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -54,10 +56,10 @@ export class LoginService {
   // getUser
   public getUser() {
     let userStr = localStorage.getItem("user");
-    console.log(userStr);
+    // console.log(userStr);
     
     if (userStr != null) {
-      console.log(JSON.parse(userStr));
+      // console.log(JSON.parse(userStr));
       return JSON.parse(userStr);
     } else {
       // this.logOut();
@@ -67,7 +69,7 @@ export class LoginService {
 
   public getUserRole() {
     let user = this.getUser();
-    console.log(user);
+    // console.log(user);
     
     return user.authorities[0].authority;
   }

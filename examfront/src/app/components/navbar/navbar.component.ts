@@ -30,6 +30,11 @@ visibleRegisterbutton:boolean=true;
      this.isloggedIn =  this.loginService.isLoggedIn();
      if(this.isloggedIn)
      this.user = this.loginService.getUser();
+    this.loginService.logInStatusSubject.asObservable().subscribe((data)=>{
+      this.isloggedIn =  this.loginService.isLoggedIn();
+     if(this.isloggedIn)
+     this.user = this.loginService.getUser();
+    })
     
 
     //  console.log(this.isloggedIn , "navbar loaded");
@@ -52,7 +57,7 @@ visibleRegisterbutton:boolean=true;
     this.loginService.logOut();
     this.router.navigate([''])
     this.isloggedIn = false;
-    console.log("is logged in",this.isloggedIn);
+    // console.log("is logged in",this.isloggedIn);
     
   }
   makeLoginRefisterVisible(){

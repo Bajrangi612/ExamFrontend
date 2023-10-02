@@ -27,7 +27,7 @@ export class ApiCommonService {
       "Authorization": 'Bearer ' + token
     });
     var options = { headers: headers };
-    console.log(options);
+    // console.log(options);
     
     return this.http.post(this.baseUrl + endpoint, body, options)
   }

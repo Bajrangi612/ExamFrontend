@@ -51,3 +51,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* 
+.fullHeight{
+    height: 100vh;
+} */
+
+.fullHeight-98{
+    height: 85vh;
+}

@@ -9,6 +9,8 @@ import { AdminGaurdGuard } from './services/admin-gaurd.guard';
 import { NormalGuard } from './services/normal.guard';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
+import { ViewCategoryComponent } from './pages/admin/view-category/view-category.component';
+import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,14 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
+      },
+      {
+        path: 'category',
+        component: ViewCategoryComponent,
+      },
+      {
+        path: 'addCategory',
+        component: AddCategoryComponent,
       }
     ]
   }, {

@@ -1,0 +1,8 @@
+.add-btn{
+    text-align: right;
+    
+}
+.header-class{
+    display: flex;
+    justify-content: space-between;
+}

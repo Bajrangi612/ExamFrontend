@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from 'src/app/services/category.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-category',
@@ -6,27 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-category.component.css']
 })
 export class ViewCategoryComponent implements OnInit {
-categories = [{
-  categoryId:10,
-  categoryName:"Programming1",
-  description:" this description is for testing only"
-},
-{
-  categoryId:10,
-  categoryName:"Programming2",
-  description:" this description is for testing only"
-},{
-  categoryId:10,
-  categoryName:"Programming3",
-  description:" this description is for testing only"
-},{
-  categoryId:10,
-  categoryName:"Programming4",
-  description:" this description is for testing only"
-}]
-  constructor() { }
+categories:any = []
+  constructor(private categoryService:CategoryService) { }
 
   ngOnInit(): void {
+    this.categoryService.categories().subscribe((data)=>{
+      console.log("response is --",data);
+      
+      this.categories = data;
+      
+    }),(error)=>{
+      console.log(error);
+      Swal.fire("Error !!","Something went Wrong","error")
+      
+    }
   }
 
 }

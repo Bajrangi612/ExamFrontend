@@ -4,18 +4,20 @@
             <div mat-subheader> All categories  </div>
             <!-- <mat-divider></mat-divider> -->
            <div class="add-btn"> 
-               <button  mat-raised-button color="primary"  routerLink="/admin/addCategory">  Add Category </button>
+               <button  mat-raised-button color="primary"  routerLink="/admin/addCategory"> <mat-icon>library_add</mat-icon>  Add Category </button>
            </div> 
         </div>
        
        
   
        <mat-list-item *ngFor="let category of categories">
-        <mat-icon mat-list-icon >folder</mat-icon>
+        <mat-icon mat-list-icon >category</mat-icon>
         <div mat-line > {{category.categoryName}}</div>
-        <div mat-line> {{category.description}}</div>
+        <div mat-line> {{category.descriptions}}</div>
         <mat-divider></mat-divider>
         
        </mat-list-item>
     </mat-list>
+
+    
 </mat-card>

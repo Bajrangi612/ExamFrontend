@@ -56,7 +56,8 @@ import { AddCategoryComponent } from './pages/admin/add-category/add-category.co
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+   
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

@@ -1,3 +1,45 @@
 <mat-card class="main">
+    <h1><u>Add New Category</u></h1>
+    <mat-card-content>
+        <form>
+            <div class="bootstrap-wrapper">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
 
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Category Name</mat-label>
+                            <input type="text" name="categoryName" matInput placeholder="Enter Here"
+                                [(ngModel)]="category.categoryName">
+
+                        </mat-form-field>
+
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Category descriptions</mat-label>
+                            <textarea name="descriptions" matInput placeholder="Enter Here" rows="15"
+                                [(ngModel)]="category.descriptions">{{category.descriptions}}</textarea>
+
+                        </mat-form-field>
+                        <div class="text-center ">
+
+                            <button mat-raised-button  color="primary" type="submit"
+                           class="mr10" (click)="addCategory()">Save</button>
+
+                            <!-- <button *ngIf="title == 'Create'" mat-raised-button color="primary" type="submit"
+                                (click)="addCategory()">
+                                 Save
+                            </button>
+                            <button *ngIf="title == 'Update'" mat-raised-button color="primary" type="button"
+                                (click)="updateCategory()">
+                                 Update
+                            </button> -->
+
+                            <button  mat-raised-button color="accent" type="reset" class="ml10">Reset</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </mat-card-content>
 </mat-card>

@@ -23,10 +23,14 @@ export class ApiCommonService {
     return this.http.get(this.baseUrl + endpoint, options)
   }
   post(endpoint: string, body: any): Observable<any> {
-    let token = null;    var headers = new HttpHeaders({
+    let token = null;    
+    var headers = new HttpHeaders({
       "Authorization": 'Bearer ' + token
     });
     var options = { headers: headers };
+    // console.log(this.baseUrl);
+    // console.log(endpoint);
+    // console.log(body);
     // console.log(options);
     
     return this.http.post(this.baseUrl + endpoint, body, options)

@@ -10,4 +10,11 @@ export class CategoryService {
   public categories(){
     return this.commService.get("/category/")
   }
+
+   saveCategories(category:any){
+    return this.commService.post("/category/",category)
+  }
+  deleteCategories(id){
+    return this.commService.delete("/category/"+id)
+  }
 }

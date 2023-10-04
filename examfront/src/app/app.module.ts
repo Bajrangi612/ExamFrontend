@@ -27,6 +27,9 @@ import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { ViewCategoryComponent } from './pages/admin/view-category/view-category.component';
 import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { UpdateCategoryComponent } from './pages/admin/update-category/update-category.component';
+import { ViewQuizzesComponent } from './pages/admin/view-quizzes/view-quizzes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +44,9 @@ import { AddCategoryComponent } from './pages/admin/add-category/add-category.co
     SidebarComponent,
     WelcomeComponent,
     ViewCategoryComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    UpdateCategoryComponent,
+    ViewQuizzesComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +62,7 @@ import { AddCategoryComponent } from './pages/admin/add-category/add-category.co
     MatIconModule,
     MatCardModule,
     MatListModule,
+    MatMenuModule
    
   ],
   providers: [authInterceptorProviders],

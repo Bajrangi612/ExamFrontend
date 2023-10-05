@@ -31,8 +31,6 @@ import {MatMenuModule} from '@angular/material/menu';
 import { UpdateCategoryComponent } from './pages/admin/update-category/update-category.component';
 import { ViewQuizzesComponent } from './pages/admin/view-quizzes/view-quizzes.component';
 import {MatDialogModule} from '@angular/material/dialog';
-import { AddQuizComponent } from './pages/admin/view-quizzes/add-quiz/add-quiz.component';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -50,8 +48,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ViewCategoryComponent,
     AddCategoryComponent,
     UpdateCategoryComponent,
-    ViewQuizzesComponent,
-    AddQuizComponent
+    ViewQuizzesComponent
   ],
   imports: [
     BrowserModule,
@@ -68,8 +65,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatListModule,
     MatMenuModule,
-    MatDialogModule,
-    ReactiveFormsModule
+    MatDialogModule
    
   ],
   providers: [authInterceptorProviders],

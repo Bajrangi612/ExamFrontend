@@ -1,43 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CategoryService } from 'src/app/services/category.service';
-
+import { CategoryService } from 'src/app/services/category.service'
 import Swal from 'sweetalert2';
+import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @Component({
   selector: 'app-view-category',
   templateUrl: './view-category.component.html',
-  styleUrls: ['./view-category.component.css']
+  styleUrls: ['./view-category.component.css'],
+  // standalone: true
 })
 export class ViewCategoryComponent implements OnInit {
-categories:any = []
-  constructor(private categoryService:CategoryService,
-    private router: Router) {
-     
-     }
+  categories: any = []
+  constructor(private categoryService: CategoryService,
+    private router: Router,
+    private dialog: MatDialog) {
+
+  }
 
   ngOnInit(): void {
     this.getCategories();
   }
-  getCategories(){
-    this.categoryService.categories().subscribe((data)=>{
+  getCategories() {
+    this.categoryService.categories().subscribe((data) => {
       // console.log("response is --",data);
-      
+
       this.categories = data;
-      
-    },(error)=>{
+
+    }, (error) => {
       // console.log(error);
-      Swal.fire("Error !!","Something went Wrong","error")
-      
+      Swal.fire("Error !!", "Something went Wrong", "error")
+
     })
   }
 
 
-  deleteCategory(id){
-      // console.log(id, "wll be deleted");
+  deleteCategory(id) {
       this.categoryService.deleteCategories(id).subscribe(
         (data) => {
-          
+
           // console.log(data);
           Swal.fire(
             'Good job!',
@@ -55,7 +58,29 @@ categories:any = []
           })
         }
       )
-      
+    // }
+
+
   }
 
+  openDialog() {
+   return this.dialog.open(DialogAnimationsExampleDialog,
+      {
+        width:'250px',       
+      })
+  }
+
+  navigateFunc(cId:any){
+    this.router.navigate(['/admin/addCategory'],{state:{categoryId:cId}})
+  }
+
+ 
+}
+
+@Component({
+  selector: 'dialog-animations-example-dialog',
+  templateUrl: './dialog-animations-example-dialog.html',
+})
+export class DialogAnimationsExampleDialog {
+  constructor(public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>) {}
 }

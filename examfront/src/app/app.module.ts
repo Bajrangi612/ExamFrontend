@@ -30,6 +30,8 @@ import { AddCategoryComponent } from './pages/admin/add-category/add-category.co
 import {MatMenuModule} from '@angular/material/menu';
 import { UpdateCategoryComponent } from './pages/admin/update-category/update-category.component';
 import { ViewQuizzesComponent } from './pages/admin/view-quizzes/view-quizzes.component';
+import {MatDialogModule} from '@angular/material/dialog';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +64,8 @@ import { ViewQuizzesComponent } from './pages/admin/view-quizzes/view-quizzes.co
     MatIconModule,
     MatCardModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule
    
   ],
   providers: [authInterceptorProviders],

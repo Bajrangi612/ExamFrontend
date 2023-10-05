@@ -1,5 +1,5 @@
 <mat-card class="main">
-    <h1><u>Add New Category</u></h1>
+    <h1>{{formTitle}} Category</h1>
     <mat-card-content>
         <form>
             <div class="bootstrap-wrapper">
@@ -21,8 +21,10 @@
                         </mat-form-field>
                         <div class="text-center ">
 
-                            <button mat-raised-button  color="primary" type="submit"
+                            <button mat-raised-button *ngIf="formTitle!='Edit'"  color="primary" type="submit"
                            class="mr10" (click)="addCategory()">Save</button>
+                           <button mat-raised-button *ngIf="formTitle=='Edit'"  color="primary" type="submit"
+                           class="mr10" (click)="updateCategory()">Update</button>
 
                             <!-- <button *ngIf="title == 'Create'" mat-raised-button color="primary" type="submit"
                                 (click)="addCategory()">

@@ -19,8 +19,9 @@
 
         <button mat-button [matMenuTriggerFor]="menu">Action</button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="deleteCategory(category.categoryId)">Delete</button>
-          <button mat-menu-item routerLink="/admin/updateCategory">Update</button>
+            <!-- <button mat-raised-button (click)="openDialog('0ms', '0ms')">Delete</button> -->
+            <button mat-menu-item (click)="navigateFunc(category.categoryId)">Edit</button>
+            <button mat-menu-item (click)="deleteCategory(category.categoryId)">Delete</button>
         </mat-menu>
         
         <mat-divider></mat-divider>

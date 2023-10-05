@@ -44,7 +44,7 @@ const routes: Routes = [
       {
         path: 'category',
         component: ViewCategoryComponent,
-      },
+      },     
       {
         path: 'addCategory',
         component: AddCategoryComponent,

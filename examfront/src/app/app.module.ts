@@ -31,6 +31,10 @@ import {MatMenuModule} from '@angular/material/menu';
 import { UpdateCategoryComponent } from './pages/admin/update-category/update-category.component';
 import { ViewQuizzesComponent } from './pages/admin/view-quizzes/view-quizzes.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { AddQuizComponent } from './pages/admin/view-quizzes/add-quiz/add-quiz.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -48,7 +52,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     ViewCategoryComponent,
     AddCategoryComponent,
     UpdateCategoryComponent,
-    ViewQuizzesComponent
+    ViewQuizzesComponent,
+    AddQuizComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +70,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     MatListModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatSlideToggleModule,
+    MatSelectModule
    
   ],
   providers: [authInterceptorProviders],

@@ -59,3 +59,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .fullHeight-98{
     height: 85vh;
 }
+
+.validation_error {
+    color: #f44336;
+    position: relative;
+    line-height: 1.8;
+    font-size: 0.8rem;
+    padding: 0 0 0 0.75rem;
+  }

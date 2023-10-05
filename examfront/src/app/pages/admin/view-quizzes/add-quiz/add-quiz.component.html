@@ -1,0 +1,78 @@
+<mat-card>
+    <h1>Add Quiz</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+
+                <form [formGroup]="quiz" (ngSubmit)="saveQuiz()">
+                    <!-- Name: <input formControlName="quizName"  placeholder="Enter Name">
+                <button type="submit">Submit</button>  -->
+
+                    <mat-form-field class="w100" appearance="outline">
+                        <mat-label>Category Name</mat-label>
+                        <input type="text" required formControlName="quizName" matInput placeholder="Enter Here">
+
+                    </mat-form-field>
+                    <div class="validation_error"
+                        [hidden]="(quiz.controls.quizName.valid||quiz.controls.quizName.untouched)">
+                        Field is required
+                    </div>
+
+                    <mat-form-field class="w100" appearance="outline">
+                        <mat-label>Descriptions</mat-label>
+                        <textarea formControlName="description" matInput placeholder="Enter Here" rows="5"></textarea>
+                    </mat-form-field>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="w100" appearance="outline">
+                                <mat-label>Total Marks</mat-label>
+                                <input type="number" formControlName="totalMarks" matInput placeholder="Enter Here">
+
+                            </mat-form-field>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="w100" appearance="outline">
+                                <mat-label>Number of Questions</mat-label>
+                                <input type="number" formControlName="noOfQuestion" matInput placeholder="Enter Here">
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <section class="example-section">
+                        <mat-slide-toggle formControlName="isActive" class="mt20 mb20" [checked]="false">
+                            Publish status
+                        </mat-slide-toggle>
+                    </section>
+                    <div class="validation_error"
+                        [hidden]="(quiz.controls.isActive.valid||quiz.controls.isActive.untouched)">
+                        Field is required
+                    </div>
+
+                    <!-- select category -->
+                    <mat-form-field class="w100"    >
+                        <mat-label>Choose Category</mat-label>
+                        <mat-select formControlName="category">
+                            <mat-option *ngFor="let c of categories;" [value]="c">
+                                {{c.categoryName}}
+                            </mat-option>
+                        </mat-select>
+
+                    </mat-form-field>
+                    <div class="validation_error"
+                    [hidden]="(quiz.controls.category.valid||quiz.controls.category.untouched)">
+                    Field is required
+                </div>
+
+                    <div class="text-center">
+                        <button mat-raised-button color="primary" type="submit"> Save</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</mat-card>

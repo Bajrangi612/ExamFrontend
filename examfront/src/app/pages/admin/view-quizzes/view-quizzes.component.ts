@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiCommonService } from 'src/app/services/api-common.service';
 
 @Component({
   selector: 'app-view-quizzes',
@@ -6,37 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-quizzes.component.css']
 })
 export class ViewQuizzesComponent implements OnInit {
-quizzes:any = [{
-  quizName:"Java",
-  isActive:true,
-  description:"Java is a programming language and a platform. Java is a high level, robust, object-oriented and secure programming language. Java was developed by Sun ..",
-  noOfQuestion:20,
-  totalMarks:100,
-  category:{
-    catrgoryName:"Programming"
-  }
-},{
-  quizName:"Java",
-  isActive:true,
-  description:"Java is a programming language and a platform. Java is a high level, robust, object-oriented and secure programming language. Java was developed by Sun ..",
-  noOfQuestion:20,
-  totalMarks:100,
-  category:{
-    catrgoryName:"Programming"
-  }
-},{
-  quizName:"Java",
-  isActive:true,
-  description:"Java is a programming language and a platform. Java is a high level, robust, object-oriented and secure programming language. Java was developed by Sun ..",
-  noOfQuestion:20,
-  totalMarks:100,
-  category:{
-    catrgoryName:"Programming"
-  }
-}];
-  constructor() { }
+quizzes:any = [];
+  constructor(private apiCommonSer:ApiCommonService) { }
 
   ngOnInit(): void {
+    this.getAllQuizzes();
+  }
+
+  public getAllQuizzes(){
+    this.apiCommonSer.get("/quiz/").subscribe((res)=>{
+      this.quizzes = res;
+    })
   }
   
 

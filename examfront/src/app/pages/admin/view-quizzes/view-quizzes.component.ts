@@ -3,24 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ApiCommonService } from 'src/app/services/api-common.service';
 import { MatTableDataSource } from '@angular/material/table';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
-
-/** Constants used to fill up our data base. */
-const COLORS: string[] = [
-  'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-  'aqua', 'blue', 'navy', 'black', 'gray'
-];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
 
 
 @Component({
@@ -32,26 +17,14 @@ const NAMES: string[] = [
 
 
 export class ViewQuizzesComponent implements OnInit {
-
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<UserData>;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-
   quizzes: any = [];
-  constructor(private apiCommonSer: ApiCommonService) {
-     // Create 100 users
-     const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-     // Assign the data to the data source for the table to render
-     this.dataSource = new MatTableDataSource(users);
+  constructor(private apiCommonSer: ApiCommonService,
+    private router:Router) {
   }
 
   ngOnInit(): void {
     this.getAllQuizzes();
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+   
   }
 
   public getAllQuizzes() {
@@ -59,28 +32,18 @@ export class ViewQuizzesComponent implements OnInit {
       this.quizzes = res;
     })
   }
-
-
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+  deleteQuiz(id){
+    this.apiCommonSer.delete("/quiz/"+id).subscribe((res)=>{
+     
+      Swal.fire("Well Done", res.message, "success");
+      this.getAllQuizzes();
+    }, (error) => {
+      console.log("error", error);
+      Swal.fire("Error !!!", error.error.message, "error"); 
+      this.getAllQuizzes();
+    })
   }
-}
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
 
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
+
 }

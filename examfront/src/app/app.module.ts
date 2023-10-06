@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatTableModule } from '@angular/material/table'  
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,8 +33,6 @@ import { AddQuizComponent } from './pages/admin/view-quizzes/add-quiz/add-quiz.c
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -62,7 +59,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatButtonModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatFormFieldModule,
+    MatSlideToggleModule,
     FormsModule,
     HttpClientModule,
     MatSnackBarModule,
@@ -73,12 +70,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatMenuModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatSlideToggleModule,
-    MatSelectModule,
-    MatTableModule,
-    MatFormFieldModule,
-
-    MatPaginatorModule,
+    MatSelectModule
+    
 
 
   ],

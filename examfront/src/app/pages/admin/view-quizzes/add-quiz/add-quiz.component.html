@@ -1,10 +1,10 @@
 <mat-card>
-    <h1>Add Quiz</h1>
+    <h1>{{formTitle +' '}}Quiz</h1>
     <div class="container">
         <div class="row">
             <div class="col-md-10 offset-md-1">
 
-                <form [formGroup]="quiz" (ngSubmit)="saveQuiz()">
+                <form [formGroup]="quiz" >
                     <!-- Name: <input formControlName="quizName"  placeholder="Enter Name">
                 <button type="submit">Submit</button>  -->
 
@@ -71,8 +71,11 @@
                         Field is required
                     </div> -->
 
-                    <div class="text-center">
-                        <button mat-raised-button color="primary" type="submit"> Save</button>
+                    <div class="text-center"  *ngIf="formTitle!='Edit'">
+                        <button mat-raised-button color="primary" type="submit" (click)="saveQuiz()"> Save</button>
+                    </div>
+                    <div class="text-center" *ngIf="formTitle =='Edit'" >
+                        <button mat-raised-button color="primary" type="submit" (click)="updateQuiz()"> Update</button>
                     </div>
 
                 </form>

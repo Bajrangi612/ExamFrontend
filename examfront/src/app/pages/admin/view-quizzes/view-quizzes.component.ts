@@ -19,12 +19,12 @@ import { Router } from '@angular/router';
 export class ViewQuizzesComponent implements OnInit {
   quizzes: any = [];
   constructor(private apiCommonSer: ApiCommonService,
-    private router:Router) {
+    private router: Router) {
   }
 
   ngOnInit(): void {
     this.getAllQuizzes();
-   
+
   }
 
   public getAllQuizzes() {
@@ -32,18 +32,33 @@ export class ViewQuizzesComponent implements OnInit {
       this.quizzes = res;
     })
   }
-  deleteQuiz(id){
-    this.apiCommonSer.delete("/quiz/"+id).subscribe((res)=>{
-     
-      Swal.fire("Well Done", res.message, "success");
-      this.getAllQuizzes();
-    }, (error) => {
-      console.log("error", error);
-      Swal.fire("Error !!!", error.error.message, "error"); 
-      this.getAllQuizzes();
+  deleteQuiz(id) {
+
+    Swal.fire({
+      icon: 'question',
+      title: 'Are you sure want to delete Category ?',
+      text: "All the questions of this category will be deleted.",
+      confirmButtonText: 'Delete',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.apiCommonSer.delete("/quiz/" + id).subscribe((res) => {
+
+          Swal.fire("Well Done", res.message, "success");
+          this.getAllQuizzes();
+        }, (error) => {
+          console.log("error", error);
+          Swal.fire("Error !!!", error.error.message, "error");
+          this.getAllQuizzes();
+        })
+      }
     })
   }
 
+  navigateFunc(q) {
+    console.log("Quiz is ",q);
+    this.router.navigate(['/admin/questions'], {state: {quizId: q.quizId, quizName:q.quizName} })
+  }
 
 
 }

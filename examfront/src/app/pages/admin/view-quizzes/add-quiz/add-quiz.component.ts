@@ -13,11 +13,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./add-quiz.component.css']
 })
 export class AddQuizComponent implements OnInit {
-  title: "Edit";
+  formTitle: any = 'Add ';
   quiz !: FormGroup;
   finalQuizObj: any = {
     quizId: null,
-    quizName: [null,Validators.required],
+    quizName: [null, Validators.required],
     isActive: null,
     description: null,
     noOfQuestion: null,
@@ -41,7 +41,7 @@ export class AddQuizComponent implements OnInit {
     this.quiz = this._fb.group({
       quizId: null,
       quizName: null,
-      isActive: null,
+      isActive: false,
       description: null,
       noOfQuestion: null,
       totalMarks: null,
@@ -55,7 +55,12 @@ export class AddQuizComponent implements OnInit {
     })
     this.getAllCategories();
 
-
+    if (this.router.getCurrentNavigation().extras.state != null) {
+      console.log("this.router.getCurrentNavigation().extras.state.quizId;", this.router.getCurrentNavigation().extras.state.quizId);
+      let id = this.router.getCurrentNavigation().extras.state.quizId;
+      this.formTitle = 'Edit';
+      this.getQuizDetails(id)
+    }
   }
 
 
@@ -63,7 +68,65 @@ export class AddQuizComponent implements OnInit {
   }
   saveQuiz() {
     //  if (this.quiz.valid){
-    console.log(this.quiz.controls);
+    // console.log(this.quiz.controls);
+    this.finalQuizObj.quizName = this.quiz.controls.quizName.value;
+    this.finalQuizObj.isActive = this.quiz.controls.isActive.value;
+    this.finalQuizObj.description = this.quiz.controls.description.value;
+    this.finalQuizObj.noOfQuestion = this.quiz.controls.noOfQuestion.value;
+    this.finalQuizObj.totalMarks = this.quiz.controls.totalMarks.value;
+    this.finalQuizObj.category = this.quiz.controls.category.value;
+    if (this.finalQuizObj.quizName == null || this.finalQuizObj.isActive == null || this.finalQuizObj.noOfQuestion == null || this.finalQuizObj.totalMarks == null || this.finalQuizObj.category == null) {
+      console.log("eeee",this.quiz.controls);
+      return;
+    }
+
+    // console.log("finalQuizObj", this.finalQuizObj);
+    this.apiCommomService.post("/quiz/", this.finalQuizObj).subscribe((res) => {
+      console.log(res);
+
+      Swal.fire("Well Done", res.message, "success");
+      this.router.navigate(['admin/quizzes']);
+    }, (error) => {
+      console.log("error", error);
+
+      Swal.fire("Error !!!", error.error.message, "error");
+    })
+
+  }
+  getAllCategories() {
+    this.apiCommomService.get("/category/").subscribe((res) => {
+      this.categories = res;
+    })
+  }
+
+  getQuizDetails(id: number) {
+
+
+    this.apiCommomService.get("/quiz/" + id).subscribe((res) => {
+      this.setQuizValues(res);
+      // this.quiz = res
+      // this.quiz.setControl = res
+    }, (err) => {
+      console.log("eror", err);
+    });
+
+
+  }
+  public setQuizValues(res: any) {
+    console.log("quiz", res);
+    this.quiz.setValue({
+      quizId: res.quizId,
+      quizName: res.quizName,
+      isActive: res.isActive,
+      description: res.description,
+      noOfQuestion: res.noOfQuestion,
+      totalMarks: res.totalMarks,
+      category: res.category
+    })
+
+  }
+  public updateQuiz() {
+    this.finalQuizObj.quizId = this.quiz.controls.quizId.value;
     this.finalQuizObj.quizName = this.quiz.controls.quizName.value;
     this.finalQuizObj.isActive = this.quiz.controls.isActive.value;
     this.finalQuizObj.description = this.quiz.controls.description.value;
@@ -75,8 +138,8 @@ export class AddQuizComponent implements OnInit {
       return;
     }
 
-    console.log("finalQuizObj", this.finalQuizObj);
-    this.apiCommomService.post("/quiz/", this.finalQuizObj).subscribe((res) => {
+    // console.log("finalQuizObj", this.finalQuizObj);
+    this.apiCommomService.put("/quiz/", this.finalQuizObj).subscribe((res) => {
       console.log(res);
 
       Swal.fire("Well Done", res.message, "success");
@@ -86,18 +149,8 @@ export class AddQuizComponent implements OnInit {
 
       Swal.fire("Error !!!", error.error.message, "error");
     })
-  // }else{
-  //   Object.keys(this.quiz.controls).forEach((key: any) => {
-  //     this.quiz.controls[key].markAsTouched({ onlySelf: true })
-  //   });
-  // }
+  }
 
-  }
-  getAllCategories() {
-    this.apiCommomService.get("/category/").subscribe((res) => {
-      this.categories = res;
-    })
-  }
 
 
 

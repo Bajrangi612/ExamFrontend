@@ -38,43 +38,52 @@ export class ViewCategoryComponent implements OnInit {
 
 
   deleteCategory(id) {
-      this.categoryService.deleteCategories(id).subscribe(
-        (data) => {
 
-          // console.log(data);
-          Swal.fire(
-            'Good job!',
-            data.message,
-            'success',
-          )
-          this.getCategories();
+    Swal.fire({
+      icon: 'question',
+      title: 'Are you sure want to delete Quiz ?',
+      text: "All the quizzes of this category will be deleted !",
+      confirmButtonText: 'Delete',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.categoryService.deleteCategories(id).subscribe(
+          (data) => {
+            Swal.fire(
+              'Good job!',
+              data.message,
+              'success',
+            )
+            this.getCategories();
+          }, (error) => {
+            Swal.fire({
+              icon: 'error',
+              title: error.error.message,
+              text: 'Please Try Again..',
+              timer: 5000
+            })
+          }
+        )
+      }
+    })
 
-        }, (error) => {
-          Swal.fire({
-            icon: 'error',
-            title: error.error.message,
-            text: 'Please Try Again..',
-            timer: 5000
-          })
-        }
-      )
-    // }
+
 
 
   }
 
   openDialog() {
-   return this.dialog.open(DialogAnimationsExampleDialog,
+    return this.dialog.open(DialogAnimationsExampleDialog,
       {
-        width:'250px',       
+        width: '250px',
       })
   }
 
-  navigateFunc(cId:any){
-    this.router.navigate(['/admin/addCategory'],{state:{categoryId:cId}})
+  navigateFunc(cId: any) {
+    this.router.navigate(['/admin/addCategory'], { state: { categoryId: cId } })
   }
 
- 
+
 }
 
 @Component({
@@ -82,5 +91,5 @@ export class ViewCategoryComponent implements OnInit {
   templateUrl: './dialog-animations-example-dialog.html',
 })
 export class DialogAnimationsExampleDialog {
-  constructor(public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>) {}
+  constructor(public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>) { }
 }

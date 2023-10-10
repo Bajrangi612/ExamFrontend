@@ -58,7 +58,7 @@
                     <!-- select category -->
                     <mat-form-field class="w100">
                         <mat-label>Choose Category</mat-label>
-                        <mat-select required matInput formControlName="category">
+                        <mat-select formControlName="category">
                             <mat-option *ngFor="let c of categories;" [value]="c">
                                 {{c.categoryName}}
                             </mat-option>

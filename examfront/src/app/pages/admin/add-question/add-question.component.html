@@ -61,9 +61,11 @@
                                 <mat-option *ngIf="allOptions[3]" [value]="allOptions[3]">{{allOptions[3]}}</mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <button (click)="addQuestion()"> add </button>
+                        <div class="text-center">
+
+                            <button mat-raised-button color="primary" (click)="addQuestion()"> add </button>
+                        </div>
                     </form>
-                    {{questions|json}}
                 </mat-card-content>
             </mat-card>
         </div>

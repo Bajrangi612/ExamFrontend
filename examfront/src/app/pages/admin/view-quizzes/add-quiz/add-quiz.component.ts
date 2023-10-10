@@ -45,11 +45,7 @@ export class AddQuizComponent implements OnInit {
       description: null,
       noOfQuestion: null,
       totalMarks: null,
-      category: {
-        categoryId: null,
-        categoryName: null,
-        descriptions: null
-      }
+      category: null
 
 
     })
@@ -123,9 +119,27 @@ export class AddQuizComponent implements OnInit {
       totalMarks: res.totalMarks,
       category: res.category
     })
+    console.log("all categories ",this.categories);
+    console.log("res.category    88",res.category);
+    for (let i = 0; i < this.categories.length; i++) {
+      let id = res.category.categoryId;
+      if(id == this.categories[i].categoryId ){
+        this.quiz.controls.category.setValue(this.categories[i])
+      }
+      
+    }
+    
+    // this.quiz.controls.category.setValue(this.categories[0])
+
+   
+
 
   }
   public updateQuiz() {
+    // console.log("this.quiz.controls.category.value",this.quiz.controls.category.value);
+
+    console.log("this.quiz.controls.category.value",this.quiz.controls.category.value);
+    
     this.finalQuizObj.quizId = this.quiz.controls.quizId.value;
     this.finalQuizObj.quizName = this.quiz.controls.quizName.value;
     this.finalQuizObj.isActive = this.quiz.controls.isActive.value;
@@ -133,8 +147,10 @@ export class AddQuizComponent implements OnInit {
     this.finalQuizObj.noOfQuestion = this.quiz.controls.noOfQuestion.value;
     this.finalQuizObj.totalMarks = this.quiz.controls.totalMarks.value;
     this.finalQuizObj.category = this.quiz.controls.category.value;
-    if (this.finalQuizObj.quizName == null || this.finalQuizObj.isActive == null || this.finalQuizObj.noOfQuestion == null || this.finalQuizObj.totalMarks == null || this.finalQuizObj.category == null) {
+    if (this.finalQuizObj.quizName == null || this.finalQuizObj.isActive == null || this.finalQuizObj.noOfQuestion == null || this.finalQuizObj.totalMarks == null  ||this.finalQuizObj.category == null) {
       console.log(this.quiz.controls);
+      console.log("null value");
+      
       return;
     }
 
@@ -142,7 +158,7 @@ export class AddQuizComponent implements OnInit {
     this.apiCommomService.put("/quiz/", this.finalQuizObj).subscribe((res) => {
       console.log(res);
 
-      Swal.fire("Well Done", res.message, "success");
+      Swal.fire("Successful", res.message, "success");
       this.router.navigate(['admin/quizzes']);
     }, (error) => {
       console.log("error", error);

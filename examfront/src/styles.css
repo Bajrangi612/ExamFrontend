@@ -67,3 +67,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-size: 0.8rem;
     padding: 0 0 0 0.75rem;
   }
+  .navbar-class{
+    position: fixed;
+    z-index: 20000000;
+    width: 100%;
+}
+  

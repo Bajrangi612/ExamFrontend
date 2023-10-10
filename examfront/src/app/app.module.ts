@@ -39,6 +39,9 @@ import { UserSidebarComponent } from './pages/user/user-sidebar/user-sidebar.com
 import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
 import { StartQuizComponent } from './pages/user/start-quiz/start-quiz.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 // import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
@@ -84,6 +87,8 @@ import { StartQuizComponent } from './pages/user/start-quiz/start-quiz.component
     MatDialogModule,
     ReactiveFormsModule,
     MatSelectModule,
+    MatRadioModule,
+    MatProgressSpinnerModule
     // CKEditorModule
     
 

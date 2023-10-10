@@ -16,7 +16,6 @@
 
                         <mat-card-content>
                             <p>Q.{{i+1 }} <span class="ml10">{{q.content}}</span> </p>
-
                         </mat-card-content>
                         <mat-divider></mat-divider>
                         <div class="row">
@@ -81,23 +80,41 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <mat-card>
-                    <mat-card-header>
-                        <mat-card-title>
-                            Quiz Result
-                        </mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <h1> Full Marks : {{fullMarks}}</h1>
-                        <h1> Total Marks :{{totalmarksGot}}</h1>
-                        <h1> Total Questions : {{totalQuestions}}</h1>
-                        <h1> Total Correct Answers :{{totalCorrectAnswer}}</h1>
-                        <h1> Total Attempted Question : {{totalAttemptedQuestion}}</h1>
-                        <h1> Not Visited Question : {{notVisited}}</h1>
-                    </mat-card-content>
+                    <div class="result-container">
+                        <div class="text-center">
+
+                            <img src="../../../../assets/ProjectLogo - Copy.png" alt="ProjectLogo" class="logo text-center">
+                        </div>
+                       
+                        <h1 class="text-center">Exam Result </h1>
+                        <h2>Subject: {{questions[0].quiz.quizName |uppercase}}</h2>
+                        <b><h3>🌟 Congratulations!</h3></b>
+                        <h3>Performance Summary:</h3>
+                        <p>📌 Full Marks: <b>{{fullMarks}} </b></p>
+                        <p>🎯 Total Gained Marks: <b>{{totalmarksGot}} </b></p>
+                        <p>✅ Total Correct Answers:<b>{{totalCorrectAnswer}} </b></p>
+                        <p>📝 Total Attempted Questions:<b>{{totalAttemptedQuestion}} </b></p>
+                        <p>❓ Questions Not Visited: <b>{{notVisited}} </b></p>
+                        <p>⏱️ Time Taken: <b> {{totalTimeTaken}} </b></p>
+                        <b><h3>Your Achievement:</h3></b>
+                        <p>You have achieved an impressive <span class="highlight">{{totalPercentage}}%</span> of the total marks!</p>
+                        <h3>Detailed Breakdown:</h3>
+                        <p>Correctly answered <span class="highlight">{{totalCorrectAnswer}}</span> out of <span class="highlight">{{totalAttemptedQuestion}}</span> attempted questions.</p>
+                        <p>You wisely left <span class="highlight">{{notVisited}}</span> questions unattempted.</p>
+                        <h3>Additional Messages:</h3>
+                        <p>👏 Well done! Your hard work has paid off.</p>
+                        <p>📚 Keep up the good work and continue to strive for excellence in your studies.</p>
+                        <p>🌠 Your determination and effort are truly commendable. Congratulations on your achievement!</p>
+                        <div class="icons">
+                            <span class="icon">🎉</span>
+                            <span class="icon">🏆</span>
+                            <span class="icon">🥇</span>
+                        </div>
+                    </div>
                     <mat-card-actions class=" text-center">
 
 
-                        <button mat-raised-button color="accent">Print</button>
+                        <button mat-raised-button color="accent" (click)="printPage()">Print</button>
                         <button mat-raised-button color="primary" [routerLink]="'/user/0'">Home</button>
                     </mat-card-actions>
                 </mat-card>

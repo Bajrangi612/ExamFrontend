@@ -1,4 +1,11 @@
 <!-- static content -->
+
+<ngx-ui-loader fgsColor = '#FFFFFF' pbColor = '#FFFFFF'  pbDirection="ltr" fgsType="ball-scale-multiple" text="Please wait..."></ngx-ui-loader>
+
+
+<div ngxUiLoaderBlurred (blur)="6">
+
+
 <div  class="navbar-class">
     <app-navbar></app-navbar>
 </div>
@@ -9,4 +16,5 @@
 top: 77px;
 ">
 <router-outlet></router-outlet>
+</div>
 </div>

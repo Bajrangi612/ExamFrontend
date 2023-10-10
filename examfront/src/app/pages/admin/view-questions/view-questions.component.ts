@@ -15,7 +15,7 @@ export class ViewQuestionsComponent implements OnInit {
   constructor( private activatedRoute:ActivatedRoute,
     private comService:ApiCommonService,
     private router:Router) { 
-      console.log("this.router.getCurrentNavigation().extras.state.quizId;", this.router.getCurrentNavigation().extras.state.quizId);
+      // console.log("this.router.getCurrentNavigation().extras.state.quizId;", this.router.getCurrentNavigation().extras.state.quizId);
         this.quizId = this.router.getCurrentNavigation().extras.state.quizId
         this.quizName = this.router.getCurrentNavigation().extras.state.quizName
     }
@@ -23,15 +23,15 @@ export class ViewQuestionsComponent implements OnInit {
   ngOnInit(): void {
 // this.quizId = this.activatedRoute.snapshot.params.quizId;
 // this.quizName = this.activatedRoute.snapshot.params.quizName;
-console.log("id",this.quizId);
-console.log(this.quizName);
+// console.log("id",this.quizId);
+// console.log(this.quizName);
  this.getQuestionsByQuizId();
 
   }
 
 getQuestionsByQuizId(){
 this.comService.get("/question/quiz/"+this.quizId).subscribe((res)=>{
-  console.log("Questions are",res);
+  // console.log("Questions are",res);
   this.questions= res;
 })
 

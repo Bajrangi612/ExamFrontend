@@ -12,56 +12,61 @@ import Swal from 'sweetalert2';
 export class AddQuestionComponent implements OnInit {
 
   // public Editor = ClassicEditor;
-  
-quizId: string;
-quizName:string;
- questions = {
-  quiz:{},
-  content:'',
-  answer:'',
-  options:[]
- }
- allOptions:any=[]
 
-  constructor( private _router :ActivatedRoute,
-    private _apiComservice:ApiCommonService,
-    private router:Router) { 
-        this.quizId = this.router.getCurrentNavigation().extras.state.quizId
-        this.quizName = this.router.getCurrentNavigation().extras.state.quizName
-    }
+  quizId: string;
+  quizName: string;
+  questions = {
+    quiz: {},
+    content: '',
+    answer: '',
+    options: []
+  }
+  allOptions: any = []
+
+  constructor(private _router: ActivatedRoute,
+    private _apiComservice: ApiCommonService,
+    private router: Router) {
+    this.quizId = this.router.getCurrentNavigation().extras.state.quizId
+    this.quizName = this.router.getCurrentNavigation().extras.state.quizName
+  }
 
   ngOnInit(): void {
-    console.log("this.router.getCurrentNavigation().extras.state.quizId;", this.router.getCurrentNavigation());
-        // this.quizId = this.router.getCurrentNavigation().extras.state.quizId
-        // this.quizName = this.router.getCurrentNavigation().extras.state.qName
+    // console.log("this.router.getCurrentNavigation().extras.state.quizId;", this.router.getCurrentNavigation());
+    // this.quizId = this.router.getCurrentNavigation().extras.state.quizId
+    // this.quizName = this.router.getCurrentNavigation().extras.state.qName
 
-    console.log('quiz id is ::: '+this.quizId);
-    this.questions.quiz['quizId']  =this.quizId;
+    // console.log('quiz id is ::: '+this.quizId);
+    this.questions.quiz['quizId'] = this.quizId;
   }
-  addQuestion(){
-    console.log("quiz id id--",this.questions.quiz);
-    
+  addQuestion() {
+    // console.log("quiz id id--", this.questions);
+
     // this.allOptions.push(1);
     this.allOptions.forEach(element => {
       let arr = {
-        option:element
+        option: element
       }
       this.questions.options.push(arr);
     });
+    if (this.questions.answer == '' || this.questions.content == '' || this.questions.options.length == 0) {
+      // console.log("somthing is null");
+
+      return
+    }
     // this.questions.options.option = 
-    console.log("Options are -- ",this.questions);
-    this._apiComservice.post("/question/",this.questions).subscribe((data)=>{
+    // console.log("Options are -- ", this.questions);
+    this._apiComservice.post("/question/", this.questions).subscribe((data) => {
       Swal.fire(
         'Good job!',
         data.message,
         'success',
       );
 
-      
-      console.log("quizId and quiz name is --",this.quizId,this.quizName);
-      
-      this.router.navigate(['/admin/questions'], {state: {quizId: this.quizId , quizName:this.quizName} })
-    },(err)=>{
+
+      // console.log("quizId and quiz name is --", this.quizId, this.quizName);
+
+      this.router.navigate(['/admin/questions'], { state: { quizId: this.quizId, quizName: this.quizName } })
+    }, (err) => {
       Swal.fire(
         'Error!',
         err.error.message,
@@ -69,8 +74,8 @@ quizName:string;
       )
     })
   }
-  
 
- 
+
+
 
 }

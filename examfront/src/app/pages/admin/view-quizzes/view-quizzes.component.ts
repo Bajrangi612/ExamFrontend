@@ -59,6 +59,10 @@ export class ViewQuizzesComponent implements OnInit {
     console.log("Quiz is ",q);
     this.router.navigate(['/admin/questions'], {state: {quizId: q.quizId, quizName:q.quizName} })
   }
+  navigateFunctoUpdate(q) {
+    console.log("Quiz is ",q);
+    this.router.navigate(['/admin/add-quiz'], {state: {quizId: q.quizId} })
+  }
 
 
 }

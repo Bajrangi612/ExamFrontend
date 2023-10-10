@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     } else if (this.loginservice.getUserRole() == "NORMAL") {
       // REDIRECT TO  NORMAL USER DHASBOARD
       // window.location.href = '/user'
-      this.router.navigate(['user']);
+      this.router.navigate(['user/0']);
       this.loginservice.logInStatusSubject.next(true);
 
 

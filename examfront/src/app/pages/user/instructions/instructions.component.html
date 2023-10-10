@@ -1,0 +1,52 @@
+<div class="bootstrap-wrapper">
+    <div class="contaner">
+        <div class="row">
+            <div class="col-md-12">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>
+                            Read the Instructions of this page carefully
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            One step more to go. 
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <h1>{{quiz.quizName }}</h1>
+                        <p>{{quiz.description}}</p>
+                        <mat-divider></mat-divider>
+                    </mat-card-content>
+                    <h1 class="mt20"> <b>
+                        Exam instructions
+                    </b> </h1>
+                    <ul>
+                        <li>All Questions are of <b>MCQ </b> type</li>
+                        <li>The duration of this exam is <b>{{quiz.noOfQuestion}} minutes. </b> </li>
+                        <li>You can attempt the quiz any number of time</li>
+                        <li>Each question carries <b>  {{quiz.totalMarks/ quiz.noOfQuestion}} Marks. </b> No Negative marking.</li>
+                        <li>Each student will get questions and answers in different order selected randomly
+                            from a fixed Question Databank.</li>
+                        <li>Allow adequate time to complete this exam in one sitting before the due date and time. Late submissions will not/may not be accepted.  </li>
+                        <li>The students just need to click on the Right Choice / Correct option from the
+                            multiple choices /options given with each question. For Multiple Choice Questions,
+                            each question has four options, and the candidate has to click the appropriate
+                            option.</li>
+                    </ul>
+                    <mat-divider></mat-divider>
+                   <h1> Attempting Quiz</h1>
+                   <ul>
+                    <li>Click <b>Start Quiz </b> button to start the quiz</li>
+                    <li>The time qill start at the moment you click the <b>Start Quiz </b> button</li>
+                    <li>You can not resume the quiz, if interrupted due to any resion</li>
+                    <li> Scroll Down to move to the next Question </li>
+                    <li> Click on submit test button on completion of the quiz</li>
+                    <li> Report of the test will autometically generate in the form of PDF copy</li>
+                </ul>
+                    <mat-card-actions class="text-center">
+                            <button mat-raised-button color="primary" (click)="startQuiz()">Start Quiz</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

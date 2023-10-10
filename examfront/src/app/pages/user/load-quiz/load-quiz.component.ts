@@ -24,25 +24,44 @@ export class LoadQuizComponent implements OnInit {
     // }
   }
   categoryId;
-  quizzes;
+  quizzes =[];
 
   ngOnInit(): void {
 
-    this.categoryId = this._atRoute.snapshot.params.categoryId;
-    if (this.categoryId == 0) {
-      console.log('load all quizes');
-      this.apiComService.get("/quiz/").subscribe((data) => {
-        this.quizzes = data
-      }, (err) => {
-          Swal.fire('Error !!',err.error.message,'error')
+   
+    this._atRoute.params.subscribe((params)=>{
+      this.categoryId = params.categoryId;
+      this.getAllQuizes()
+      if (this.categoryId == 0) {
+        console.log('load all quizes');
+      
+      } else {
+        console.log('load specfic quizzes');
+        this.quizzes = []
+        this.getSpecificQuiz()
       }
-      )
-    } else {
-      console.log('load specfic quizzes');
 
-    }
+    })
+    
 
   }
+  getAllQuizes():any {
+    this.apiComService.get("/quiz/active").subscribe((data) => {
+      this.quizzes =  data
+    }, (err) => {
+        Swal.fire('Error !!',err.error.message,'error')
+    }
+    )
+  }
+  getSpecificQuiz(){
+    this.apiComService.get("/quiz/active/"+this.categoryId).subscribe((data) => {
+      this.quizzes =  data
+    }, (err) => {
+        Swal.fire('Error !!',err.error.message,'error')
+    }
+    )
+  }
+
 
 
 

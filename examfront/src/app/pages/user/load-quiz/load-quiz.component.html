@@ -2,7 +2,7 @@
     <div class="cintainer-fluid">
         <h1>Available Quizzes</h1>
         <div class="row">
-            <div class="col-md-4 w100  " *ngFor="let q of quizzes">
+            <div class="col-md-4 w100  " *ngFor="let q of quizzes" >
                 <mat-card class="mb20">
                     <mat-card-header>
                         <div mat-card-avatar class="example-header-image"></div>
@@ -13,14 +13,23 @@
                         {{q.description}}
                     </mat-card-content>
                     <mat-card-action >
-                        <button mat-raised-button color="primary" class="mr10">View </button>
-                        <button mat-raised-button color="accent" class="mr10">Start </button>
+                        <button mat-stroked-button color="primary" class="mr10">View </button>
+                        <button mat-stroked-button color="accent" class="mr10" [routerLink]="'/user/instructions/'+q.quizId">Start </button>
                         <button mat-stroked-button color="primary" class="mr10">Ques: {{q.noOfQuestion}} </button>
                         <button mat-stroked-button color="warn">M.M {{q.totalMarks}} </button>
                     </mat-card-action>
                 </mat-card>
                 <!-- <p>{{q.quizName}}</p> -->
             </div>
+            <div class="col-md-12" *ngIf="quizzes.length ==0">
+                <mat-card>
+                    <mat-card-content>
+                        <img src="../../../../assets/NoData.png" alt="">
+                    </mat-card-content>
+                </mat-card>
+
+            </div>
+            
         </div>
     </div>
 </div>

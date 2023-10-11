@@ -42,9 +42,8 @@ import { StartQuizComponent } from './pages/user/start-quiz/start-quiz.component
 import {MatRadioModule} from '@angular/material/radio';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
-
-// import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -92,6 +91,7 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
     MatRadioModule,
     MatProgressSpinnerModule,
     NgxUiLoaderModule,
+    CKEditorModule,
     NgxUiLoaderHttpModule.forRoot({
       showForeground:true
     })

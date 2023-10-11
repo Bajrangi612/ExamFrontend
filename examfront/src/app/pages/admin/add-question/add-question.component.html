@@ -12,17 +12,10 @@
                 <mat-card-content>
                     <form>
                         <!-- content-field -->
-                        <mat-form-field class="w100" appearance="outline">
-                        <mat-label >Question Content</mat-label>
-                        <textarea matInput required rows="8" placeholder="Enter Here" [(ngModel)]="questions.content" name="content"></textarea>
-                    </mat-form-field>
-
-                        <!-- app.component.html -->
-
-                        <!-- <ckeditor [editor]="Editor" data="<p>Hello, world!</p>" name="content" [(ngModel)]="questions.content"></ckeditor> -->
-
+                        
+                        <ckeditor [editor]="Editor"  name="content" [(ngModel)]="questions.content" ></ckeditor>
                         <!-- options -->
-                        <!-- <button mat-mini-fab color="accent" (click)="addOptions()"><mat-icon>add</mat-icon></button> -->
+                       
                         <div class="row">
                             <div class="col-md-6">
                                 <mat-form-field class="w100" appearance="outline">

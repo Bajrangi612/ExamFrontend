@@ -34,12 +34,13 @@ export class StartQuizComponent implements OnInit {
     this.preventBackButton()
     this.quizId = this._route.snapshot.params.quizId;
     this.getQuestionOfQuizId();
+   
 
     //  this.questions.forEach((q) => {
     //   q['selectedAnswer'] = '';
     //  });
 
-    console.log(this.questions);
+    // console.log(this.questions);
 
   }
   preventBackButton() {

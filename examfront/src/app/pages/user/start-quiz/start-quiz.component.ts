@@ -59,7 +59,7 @@ export class StartQuizComponent implements OnInit {
       // this.timer = this.questions.length*120;
       this.questions = data;
       console.log(data);
-      this.timer = data.length * 120;
+      this.timer = data[0].quiz.totalTimeInMinute*60
       this.startTimer()
       this.quizStartTime = new Date();
     }, (error) => {

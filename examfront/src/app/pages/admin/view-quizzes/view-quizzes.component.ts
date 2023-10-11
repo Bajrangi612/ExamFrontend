@@ -47,7 +47,7 @@ export class ViewQuizzesComponent implements OnInit {
           Swal.fire("Well Done", res.message, "success");
           this.getAllQuizzes();
         }, (error) => {
-          console.log("error", error);
+          // console.log("error", error);
           Swal.fire("Error !!!", error.error.message, "error");
           this.getAllQuizzes();
         })

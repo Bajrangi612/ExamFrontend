@@ -140,10 +140,7 @@ export class AddQuizComponent implements OnInit {
 
   }
   public updateQuiz() {
-    // console.log("this.quiz.controls.category.value",this.quiz.controls.category.value);
 
-    // console.log("this.quiz.controls.category.value",this.quiz.controls.category.value);
-    
     this.finalQuizObj.quizId = this.quiz.controls.quizId.value;
     this.finalQuizObj.quizName = this.quiz.controls.quizName.value;
     this.finalQuizObj.isActive = this.quiz.controls.isActive.value;
@@ -152,21 +149,15 @@ export class AddQuizComponent implements OnInit {
     this.finalQuizObj.totalMarks = this.quiz.controls.totalMarks.value;
     this.finalQuizObj.totalTimeInMinute = this.quiz.controls.totalTimeInMinute.value;
     this.finalQuizObj.category = this.quiz.controls.category.value;
-    if (this.finalQuizObj.quizName == null || this.finalQuizObj.isActive == null || this.finalQuizObj.noOfQuestion == null || this.finalQuizObj.totalMarks == null  ||this.finalQuizObj.category == null) {
-      // console.log(this.quiz.controls);
-      // console.log("null value");
-      
+    if (this.finalQuizObj.quizName == null || this.finalQuizObj.isActive == null || this.finalQuizObj.noOfQuestion == null || this.finalQuizObj.totalMarks == null  ||this.finalQuizObj.category == null ||this.finalQuizObj.totalTimeInMinute==null) {
       return;
     }
 
-    // console.log("finalQuizObj", this.finalQuizObj);
     this.apiCommomService.put("/quiz/", this.finalQuizObj).subscribe((res) => {
-      // console.log(res);
 
       Swal.fire("Successful", res.message, "success");
       this.router.navigate(['admin/quizzes']);
     }, (error) => {
-      // console.log("error", error);
 
       Swal.fire("Error !!!", error.error.message, "error");
     })

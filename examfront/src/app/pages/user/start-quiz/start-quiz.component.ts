@@ -2,6 +2,7 @@ import { LocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiCommonService } from 'src/app/services/api-common.service';
+import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,6 +22,7 @@ export class StartQuizComponent implements OnInit {
   notVisited = 0;
   fullMarks = 0;
   totalPercentage;
+  userName :any;
 
   timer: any;
   totalTimeTaken: any;
@@ -28,14 +30,13 @@ export class StartQuizComponent implements OnInit {
   quizEndTime;
   constructor(private locatioSt: LocationStrategy,
     private _route: ActivatedRoute,
-    private _apiComService: ApiCommonService) { }
+    private _apiComService: ApiCommonService ,private loginService:LoginService) { }
 
   ngOnInit(): void {
     this.preventBackButton()
     this.quizId = this._route.snapshot.params.quizId;
     this.getQuestionOfQuizId();
-   
-
+    this.userName = this.loginService.getUser().username;
     //  this.questions.forEach((q) => {
     //   q['selectedAnswer'] = '';
     //  });
@@ -77,8 +78,6 @@ export class StartQuizComponent implements OnInit {
       if (e.isConfirmed) {
         this.evaluetResult()
         // this.evaluateResult()
-
-
       }
     })
     // console.log(this.questions);
@@ -168,8 +167,16 @@ export class StartQuizComponent implements OnInit {
     this.isSubmit = true
 
     this.quizEndTime = new Date;
+    console.log(this.quizStartTime," and ",this.quizEndTime);
+    
+   let timeTaken =  this.timeDuration(this.quizStartTime,this.quizEndTime);
+    let body:any = {
+      questionVOList  : this.questions,
+      totalTime: timeTaken,
+      userName : this.userName,
+    }
 
-    this._apiComService.post("/question/eval", this.questions).subscribe((res) => {
+    this._apiComService.post("/question/eval", body).subscribe((res) => {
       // console.log("res", res);
 
       this.totalTimeTaken = this.timeDuration(this.quizEndTime, this.quizStartTime)

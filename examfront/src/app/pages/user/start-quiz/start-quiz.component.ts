@@ -172,7 +172,7 @@ export class StartQuizComponent implements OnInit {
    let timeTaken =  this.timeDuration(this.quizStartTime,this.quizEndTime);
     let body:any = {
       questionVOList  : this.questions,
-      totalTime: timeTaken,
+      totalTime : timeTaken,
       userName : this.userName,
     }
 

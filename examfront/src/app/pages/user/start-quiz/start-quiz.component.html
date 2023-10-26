@@ -22,21 +22,21 @@
 
 
                             <mat-radio-group [(ngModel)]="q.selectedAnswer">
-                                <div class="col-md-12 mt10 ml10" *ngIf="q.options[0].option">
+                                <div class="col-md-12 mt10 ml10" *ngIf="q.options[0].optionContent">
                                     <mat-radio-button name="name{{i}}"
-                                        value="{{q.options[0].option}}">{{q.options[0].option}}</mat-radio-button>
+                                        value="{{q.options[0].optionContent}}">{{q.options[0].optionContent}}</mat-radio-button>
                                 </div>
-                                <div class="col-md-12 mt10 ml10" *ngIf="q.options[1].option">
+                                <div class="col-md-12 mt10 ml10" *ngIf="q.options[1].optionContent">
                                     <mat-radio-button name="name{{i}}"
-                                        value="{{q.options[1].option}}">{{q.options[1].option}}</mat-radio-button>
+                                        value="{{q.options[1].optionContent}}">{{q.options[1].optionContent}}</mat-radio-button>
                                 </div>
-                                <div class="col-md-12 mt10 ml10" *ngIf="q.options[2].option">
+                                <div class="col-md-12 mt10 ml10" *ngIf="q.options[2].optionContent">
                                     <mat-radio-button name="name{{i}}"
-                                        value="{{q.options[2].option}}">{{q.options[2].option}}</mat-radio-button>
+                                        value="{{q.options[2].optionContent}}">{{q.options[2].optionContent}}</mat-radio-button>
                                 </div>
-                                <div class="col-md-12 mt10 ml10" *ngIf="q.options[3].option">
+                                <div class="col-md-12 mt10 ml10" *ngIf="q.options[3].optionContent">
                                     <mat-radio-button name="name{{i}}"
-                                        value="{{q.options[3].option}}">{{q.options[3].option}}</mat-radio-button>
+                                        value="{{q.options[3].optionContent}}">{{q.options[3].optionContent}}</mat-radio-button>
                                 </div>
                             </mat-radio-group>
 

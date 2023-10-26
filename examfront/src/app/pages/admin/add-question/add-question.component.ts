@@ -39,12 +39,12 @@ export class AddQuestionComponent implements OnInit {
     this.questions.quiz['quizId'] = this.quizId;
   }
   addQuestion() {
-    // console.log("quiz id id--", this.questions);
+  
 
     // this.allOptions.push(1);
     this.allOptions.forEach(element => {
       let arr = {
-        option: element
+        optionContent: element
       }
       this.questions.options.push(arr);
     });
@@ -54,7 +54,7 @@ export class AddQuestionComponent implements OnInit {
       return
     }
     // this.questions.options.option = 
-    // console.log("Options are -- ", this.questions);
+    console.log("question are -- ", this.questions);
     this._apiComservice.post("/question/", this.questions).subscribe((data) => {
       Swal.fire(
         'Good job!',
